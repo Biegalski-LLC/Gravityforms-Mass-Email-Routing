@@ -13,10 +13,10 @@ Future releases of this plugin will include a more seamless way to integrate thi
 3. Import email routes with a database management tool such as phpMyAdmin or MySQL Workbench into the `{wp/prefix}_rg_email_routing` table.
 
 ## Importing Data
-When importing the data into the table, all columns are required for proper routing. For each entry, you will need to define the form ID number, field ID number, field value, email address and which notifications to send.
+When importing the data into the table, all columns are required for proper routing. For each entry, you will need to define the form ID number, field ID number, field value, email address and which notification to send.
 
 ## Known Bugs
-##### One Specific Field & Notification Per Form
+#### One Specific Field & Notification Per Form
 The current verion (v0.0.1) will only route emails properly when one specific field and on specific notification on each form is targeted. However, multiple email addresses can be assigned to this field/notification combo.
 
 **Example:**
