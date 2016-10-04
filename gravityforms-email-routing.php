@@ -87,7 +87,7 @@ function run_gravityforms_email_routing() {
             }
 
             return $notification;
-        }        
+        }
     }
 }
 run_gravityforms_email_routing();
