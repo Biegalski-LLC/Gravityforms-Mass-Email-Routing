@@ -49,13 +49,13 @@ In the above example, we are targeting Form ID #1 and Field #1.3 which we'll say
  
  I plan on implementing the ability to send out multiple notifications based on multiple fields in the future.
  
- ## Authors
+## Authors
  * Mike Biegalski - [Biegalski LLC](https://biegal.ski)
  
- Happily accepting contributors and/or forks.
+Happily accepting contributors and/or forks.
  
- ## License
- This project is licensed under the GNU General Public License, version 2
+## License
+This project is licensed under the GNU General Public License, version 2
  
- ## Acknowledgments
+## Acknowledgments
  * WordPress Plugin Boilerplate Generator - [wppb.me](http://wppb.me/)
