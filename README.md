@@ -1,9 +1,11 @@
 # Gravity Forms Mass Email Routing
-Email routing in gravity forms is great, unless you have hundreds of different routes all based on the value of a specific field. This plugin will hopefully solve this issue by checking a database table and sending notifications based on form ID number, field ID number, field value, email address and notification name.
+Email routing in gravity forms is great, unless you have hundreds of different routes all based on the value of a specific field. It can take hours manually inputting all of these routes in the gravity forms admin dashboard.
 
-This table can quick and easily be populated in a spreadsheet which can then be imported using popular database management tools such as phpMyAdmin or MySQL Workbench.
+This plugin aids you in mass email routing by checking a database table and sending notifications based on form ID number, field ID number, field value, email address and notification name.
 
-Future releases of this plugin will include a more seamless way to integrate this data. I just needed a barebones functional plugin that works.
+The table can quick and easily be populated in a spreadsheet which can then be imported using popular database management tools such as phpMyAdmin or MySQL Workbench.
+
+Future releases of this plugin will include a more seamless way to integrate this data. I just needed a barebones completely functional plugin that works. Why did I need this? A client has one form; 36,000 email addresses; which email address receives the notification all depended upon the value of the franchise ID field.
 
 ## Installation
 1. Upload the `gravityforms-email-routing` directory to the `/wp-content/plugins/` directory
@@ -15,7 +17,7 @@ When importing the data into the table, all columns are required for proper rout
 
 ## Known Bugs
 ##### One Specific Field & Notification Per Form
-The current verion (v0.0.1) will only route emails properly when one specific field on each form is targeted. Multiple email addresses can be assigned to this field.
+The current verion (v0.0.1) will only route emails properly when one specific field and on specific notification on each form is targeted. However, multiple email addresses can be assigned to this field/notification combo.
 
 **Example:**
 ```
