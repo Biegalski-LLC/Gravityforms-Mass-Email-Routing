@@ -51,6 +51,7 @@ class Gravityforms_Email_Routing_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+        $this->wp_cbf_options = get_option($this->plugin_name);
 
 	}
 
@@ -99,77 +100,4 @@ class Gravityforms_Email_Routing_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/gravityforms-email-routing-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
-
-    /**
-     * @param $input
-     * @return array
-     *
-     * @since    0.0.1
-     */
-    public function validate($input) {
-        global $wpdb;
-
-        $purlTableName = sanitize_text_field( $input['purl-table-name'] );
-
-        $valid = array();
-
-        if($purlTableName !== ''){
-
-            $table_name = $wpdb->prefix.$purlTableName;
-
-            if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-
-                $tableSchema = array();
-                foreach ($input as $column => $value) {
-                    $tableSchema[$column] = sanitize_text_field($value);
-                }
-
-                $charset_collate = $wpdb->get_charset_collate();
-
-                $sql = "CREATE TABLE $table_name (
-                              id mediumint(9) NOT NULL AUTO_INCREMENT,                              
-                              form_id mediumint(9) DEFAULT 0,
-                              field_id mediumint(9) DEFAULT 0,
-                              field_value VARCHAR(255) NOT NULL,
-                              email_address VARCHAR(255) NOT NULL,
-                              notification_name VARCHAR(255) NOT NULL,
-                              created_at timestamp,
-                              updated_at timestamp,
-                              UNIQUE KEY id (id)
-                         ) $charset_collate;";
-
-                require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-                dbDelta( $sql );
-            }
-        }
-
-        $valid['purl-table-name'] = (isset($purlTableName) && !empty($purlTableName)) ? $purlTableName : '';
-
-        return $valid;
-    }
-
-	public function send_notification ( $event, $form, $lead ) {
-        $notifications = GFCommon::get_notifications_to_send( $event, $form, $lead );
-        $notifications_to_send = array();
-
-        //running through filters that disable form submission notifications
-        foreach ( $notifications as $notification ) {
-            if ( apply_filters( "gform_disable_notification_{$form['id']}", apply_filters( 'gform_disable_notification', false, $notification, $form, $lead ), $notification, $form, $lead ) ) {
-                //skip notifications if it has been disabled by a hook
-                continue;
-            }
-
-            $notifications_to_send[] = $notification['id'];
-        }
-
-        GFCommon::send_notifications( $notifications_to_send, $form, $lead, true, $event );
-    }
-
-    /**
-     * @since   0.0.1
-     */
-    public function options_update() {
-        register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
-    }
-
 }

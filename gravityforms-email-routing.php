@@ -67,9 +67,27 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-gravityforms-email-routing
  * @since    0.0.1
  */
 function run_gravityforms_email_routing() {
+    add_filter( 'gform_notification', 'notification_routing', 10, 3 );
+    function notification_routing( $notification, $form, $entry ) {
 
-	$plugin = new Gravityforms_Email_Routing();
-	$plugin->run();
+        $plugin = new Gravityforms_Email_Routing();
+        $run = $plugin->send_notifications($form, $entry);
 
+        if ( $notification['name'] == $run['notification_name'] ) {
+            $notification['toType']  = 'routing';
+
+            $notification['routing'] = array(
+                array(
+                    'fieldId'  => $run['field_id'],
+                    'operator' => 'is',
+                    'value'    => $run['notification_value'],
+                    'email'    => $run['notification_email'],
+                ),
+            );
+        }
+
+
+        return $notification;
+    }
 }
 run_gravityforms_email_routing();

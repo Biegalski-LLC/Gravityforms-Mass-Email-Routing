@@ -212,4 +212,36 @@ class Gravityforms_Email_Routing {
 		return $this->version;
 	}
 
+    public function send_notifications ($form, $entry) {
+        global $wpdb;
+
+        $formID = $entry['form_id'];
+
+        $table_name = $wpdb->prefix.'rg_email_routing';
+        $grabNotifications = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $table_name WHERE form_id = %d", $formID) );
+
+        if($grabNotifications !== null) {
+
+            $emailString = '';
+            foreach ($grabNotifications as $notification) {
+                $fieldID = $notification->field_id;
+                $fieldValue = $notification->field_value;
+                $emailAddress = $notification->email_address;
+                $notificationName = $notification->notification_name;
+
+                if(rgar( $entry, $fieldID ) == $fieldValue){
+                    $emailString .= $emailAddress.', ';
+                }
+            }
+            $data = array(
+                'notification_name' =>  $notificationName,
+                'field_id' => $fieldID,
+                'notification_value' => $fieldValue,
+                'notification_email' => rtrim($emailString, ', ')
+            );
+
+            return $data;
+        }
+        return null;
+    }
 }
