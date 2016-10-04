@@ -1,5 +1,9 @@
 # Gravity Forms Mass Email Routing
-Email routing in gravity forms is great, unless you have hundreds of different routes all based on the value of a specific field. This plugin will hopefully solve this issue by emailing routing based on a database table.
+Email routing in gravity forms is great, unless you have hundreds of different routes all based on the value of a specific field. This plugin will hopefully solve this issue by checking a database table and sending notifications based on form ID number, field ID number, field value, email address and notification name.
+
+This table can quick and easily be populated in a spreadsheet which can then be imported using popular database management tools such as phpMyAdmin or MySQL Workbench.
+
+Future releases of this plugin will include a more seamless way to integrate this data. I just needed a barebones functional plugin that works.
 
 ## Installation
 1. Upload the `gravityforms-email-routing` directory to the `/wp-content/plugins/` directory
