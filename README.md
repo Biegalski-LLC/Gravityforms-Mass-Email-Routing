@@ -10,7 +10,7 @@ Future releases of this plugin will include a more seamless way to integrate thi
 ## Installation
 1. Upload the `gravityforms-email-routing` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Import email routes with a database management tool such as phpMyAdmin or MySQL Workbench.
+3. Import email routes with a database management tool such as phpMyAdmin or MySQL Workbench into the `{wp/prefix}_rg_email_routing` table.
 
 ## Importing Data
 When importing the data into the table, all columns are required for proper routing. For each entry, you will need to define the form ID number, field ID number, field value, email address and which notifications to send.
