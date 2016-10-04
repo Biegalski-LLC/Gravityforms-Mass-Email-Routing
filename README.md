@@ -17,7 +17,7 @@ When importing the data into the table, all columns are required for proper rout
 
 ## Known Bugs
 #### One Specific Field & Notification Per Form
-The current verion (v0.0.1) will only route emails properly when one specific field and one specific notification is targeted per. Multiple email addresses can be assigned to this field/notification combo though.
+The current verion (v0.0.1) will only route emails properly when one specific field and one specific notification is targeted per form. Multiple email addresses can be assigned to this field/notification combo though.
 
 **Example:**
 ```
