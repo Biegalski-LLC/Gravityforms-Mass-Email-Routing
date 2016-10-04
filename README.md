@@ -17,7 +17,7 @@ When importing the data into the table, all columns are required for proper rout
 
 ## Known Bugs
 #### One Specific Field & Notification Per Form
-The current verion (v0.0.1) will only route emails properly when one specific field and on specific notification on each form is targeted. However, multiple email addresses can be assigned to this field/notification combo.
+The current verion (v0.0.1) will only route emails properly when one specific field and one specific notification is targeted per. Multiple email addresses can be assigned to this field/notification combo though.
 
 **Example:**
 ```
@@ -48,3 +48,14 @@ Database Entries
 In the above example, we are targeting Form ID #1 and Field #1.3 which we'll say is the First Name field. If the form submission first name is John, the *admin notification* will be sent to *john.a@domain.com* and *john.b@domain.com*. If the form submission first name is Leroy, the *admin notification* will only be sent to *leroy@domain.com*.
  
  I plan on implementing the ability to send out multiple notifications based on multiple fields in the future.
+ 
+ ## Authors
+ * Mike Biegalski - [Biegalski LLC](https://biegal.ski)
+ 
+ Happily accepting contributors and/or forks.
+ 
+ ## License
+ This project is licensed under the GNU General Public License, version 2
+ 
+ ## Acknowledgments
+ * WordPress Plugin Boilerplate Generator - [wppb.me](http://wppb.me/)
