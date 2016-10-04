@@ -72,22 +72,22 @@ function run_gravityforms_email_routing() {
 
         $plugin = new Gravityforms_Email_Routing();
         $run = $plugin->send_notifications($form, $entry);
+        if($run !== null){
+            if ( $notification['name'] == $run['notification_name'] ) {
+                $notification['toType']  = 'routing';
 
-        if ( $notification['name'] == $run['notification_name'] ) {
-            $notification['toType']  = 'routing';
+                $notification['routing'] = array(
+                    array(
+                        'fieldId'  => $run['field_id'],
+                        'operator' => 'is',
+                        'value'    => $run['notification_value'],
+                        'email'    => $run['notification_email'],
+                    ),
+                );
+            }
 
-            $notification['routing'] = array(
-                array(
-                    'fieldId'  => $run['field_id'],
-                    'operator' => 'is',
-                    'value'    => $run['notification_value'],
-                    'email'    => $run['notification_email'],
-                ),
-            );
-        }
-
-
-        return $notification;
+            return $notification;
+        }        
     }
 }
 run_gravityforms_email_routing();
